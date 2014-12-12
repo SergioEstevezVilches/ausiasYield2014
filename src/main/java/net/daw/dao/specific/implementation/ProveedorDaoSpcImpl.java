@@ -101,7 +101,7 @@ public class ProveedorDaoSpcImpl implements ViewDaoInterface<ProveedorBeanGenSpI
                     oProveedorBean.setWeb(oMysql.getOne(strTableName, "web", oProveedorBean.getId()));
                     oProveedorBean.setFax(oMysql.getOne(strTableName, "fax", oProveedorBean.getId()));
                     oProveedorBean.setLocalidad(oMysql.getOne(strTableName, "localidad", oProveedorBean.getId()));
-
+                    oProveedorBean.setPath(oMysql.getOne(strTableName, "path", oProveedorBean.getId()));
                 }
             } catch (Exception ex) {
                 ExceptionBooster.boost(new Exception(this.getClass().getName() + ":get ERROR: " + ex.getMessage()));
@@ -126,6 +126,7 @@ public class ProveedorDaoSpcImpl implements ViewDaoInterface<ProveedorBeanGenSpI
             oMysql.updateOne(oProveedorBean.getId(), strTableName, "web", oProveedorBean.getWeb());
             oMysql.updateOne(oProveedorBean.getId(), strTableName, "fax", oProveedorBean.getFax());
             oMysql.updateOne(oProveedorBean.getId(), strTableName, "localidad", oProveedorBean.getLocalidad());
+            oMysql.updateOne(oProveedorBean.getId(), strTableName, "path", oProveedorBean.getPath());
         } catch (Exception ex) {
             ExceptionBooster.boost(new Exception(this.getClass().getName() + ":set ERROR: " + ex.getMessage()));
         }

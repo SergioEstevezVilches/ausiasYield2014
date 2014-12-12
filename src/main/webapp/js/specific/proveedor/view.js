@@ -27,17 +27,17 @@ proveedorView.prototype.getClassNameProveedor = function () {
 var oProveedorView = new proveedorView('proveedor');
 
 
-proveedorView.prototype.loadButtons = function (id) {
-
-    var botonera = "";
-    botonera += '<div class="btn-toolbar" role="toolbar"><div class="btn-group btn-group-xs">';
-    botonera += '<a class="btn btn-default view" id="' + id + '"  href="jsp#/' + this.clase + '/view/' + id + '"><i class="glyphicon glyphicon-eye-open"></i></a>';
-    botonera += '<a class="btn btn-default edit" id="' + id + '"  href="jsp#/' + this.clase + '/edit/' + id + '"><i class="glyphicon glyphicon-pencil"></i></a>';
-    botonera += '<a class="btn btn-default remove" id="' + id + '"  href="jsp#/' + this.clase + '/remove/' + id + '"><i class="glyphicon glyphicon-remove"></i></a>';
-    botonera += '</div></div>';
-    return botonera;
-
-}
+//proveedorView.prototype.loadButtons = function (id) {
+//
+//    var botonera = "";
+//    botonera += '<div class="btn-toolbar" role="toolbar"><div class="btn-group btn-group-xs">';
+//    botonera += '<a class="btn btn-default view" id="' + id + '"  href="jsp#/' + this.clase + '/view/' + id + '"><i class="glyphicon glyphicon-eye-open"></i></a>';
+//    botonera += '<a class="btn btn-default edit" id="' + id + '"  href="jsp#/' + this.clase + '/edit/' + id + '"><i class="glyphicon glyphicon-pencil"></i></a>';
+//    botonera += '<a class="btn btn-default remove" id="' + id + '"  href="jsp#/' + this.clase + '/remove/' + id + '"><i class="glyphicon glyphicon-remove"></i></a>';
+//    botonera += '</div></div>';
+//    return botonera;
+//
+//}
 proveedorView.prototype.loadFormValues = function (valores, campos) {
 //                    $('#proveedor_form #titulo').val(valores['titulo']);
 //                    $('#proveedor_form #contenido').val(valores['contenido']);
@@ -71,11 +71,61 @@ proveedorView.prototype.getFormValues = function () {
 
 proveedorView.prototype.doEventsLoading = function () {
     var thisObject = this;
-   
 
-   
+
+
 };
 
 proveedorView.prototype.okValidation = function (f) {
     $('#proveedorForm').on('success.form.bv', f);
 };
+
+
+proveedorView.prototype.getEmptyCuadros = function () {
+    $.when(ajax().ajaxCallSync(path + '/jsp?ob=' + this.clase + '&op=cuadros&mode=1', 'GET', '')).done(function (data) {
+        form = data;
+    });
+    return form;
+};
+
+proveedorView.prototype.getBodyCuadros = function (page, fieldNames, visibleFields, tdbuttons) {
+    var thisObject = this;
+    var tabla = "";
+    $.each(page, function (index, value) {
+        tabla += '<div class="wrapper"><div id="cuadro">';
+
+        var numField = 0;
+        var id;
+        var path;
+        var cuerpo = "";
+        var strClaveAjena;
+
+        $.each(fieldNames, function (index, valor) {
+            if ("id" == valor) {
+                id = value[valor];
+            }
+
+            if ("path" == valor) {
+                path = value[valor];
+            }
+
+            if (path) {
+                tabla += "<div class=\"imageinfo\"><a id=\"" + id + "\"  href=\"jsp#/proveedor/view/" + id + "\"><img class=\"img-responsive\"src=\"" + path + "\"></a></div>";
+            }
+
+            numField++;
+            var visibleFields2 = 3;
+            if (numField <= visibleFields2) {
+                cuerpo += '<div id="info">' + thisObject.printValue(value, valor, true) + '</div>';
+            }
+        });
+        tabla += cuerpo;
+        tabla += '<a class="btn btn-primary botonprod" href="">Añadir al carrito</a>';
+        tabla += '</div></div>';
+    });
+    return tabla;
+};
+
+
+
+

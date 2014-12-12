@@ -29,7 +29,7 @@ function fProveedorRoutes() {
 
     Path.map("#/proveedor").to(function () {
         $('#indexContenidoJsp').spinner();
-        oProveedorControl.list($('#indexContenido'), param().defaultizeUrlObjectParameters({}), null, oProveedorModel, oProveedorView);
+        oProveedorControl.listCuadros($('#indexContenido'), param().defaultizeUrlObjectParameters({}), null, oProveedorModel, oProveedorView);
         //proveedorControl.modalListEventsLoading(proveedorObject, proveedorView, $('#indexContenido'), param().defaultizeUrlObjectParameters({}), null);        
         $('#indexContenidoJsp').empty();
         $('#indexContenidoJsp').append(oProveedorControl.getClassNameProveedor());
@@ -39,7 +39,7 @@ function fProveedorRoutes() {
     Path.map("#/proveedor/list/:url").to(function () {
         $('#indexContenidoJsp').spinner();
         var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oProveedorControl.list($('#indexContenido'), paramsObject, null, oProveedorModel, oProveedorView);
+        oProveedorControl.listCuadros($('#indexContenido'), paramsObject, null, oProveedorModel, oProveedorView);
         $('#indexContenidoJsp').empty();
         return false;
     });

@@ -33,7 +33,7 @@ public class ProveedorBeanGenSpImpl extends BeanGenImpl implements BeanInterface
     private String web;
     private String fax;
     private String localidad;
-    
+    private String path;
     
     public ProveedorBeanGenSpImpl() {
     }
@@ -104,6 +104,14 @@ public class ProveedorBeanGenSpImpl extends BeanGenImpl implements BeanInterface
 
     public void setLocalidad(String localidad) {
         this.localidad = localidad;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
     
     

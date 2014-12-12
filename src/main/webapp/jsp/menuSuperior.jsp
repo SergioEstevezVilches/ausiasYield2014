@@ -40,6 +40,10 @@
             <li class="dropdown-header">Red Social</li>
             <li><a href="jsp#/publicacion">Publicacion</a></li>
             <li><a href="jsp#/estado">Estado</a></li>
+            <li class="divider"></li>           
+            <li class="dropdown-header">Tienda Online</li>
+            <li><a href="jsp#/producto">Producto</a></li>
+
         </ul>
     </li>    
 

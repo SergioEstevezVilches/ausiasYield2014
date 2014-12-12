@@ -88,3 +88,13 @@
 
     </div>
 </div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Tienda Online</h3>
+    </div>
+    <div class="list-group">
+        <a  class="list-group-item" id="lnkProducto" href="jsp#/producto">Producto</a> 
+       
+    </div>
+</div>
